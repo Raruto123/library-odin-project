@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr-CI">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libray Project</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <p></p>
+    <button type="button" id="show-dialog">Add A New Book</button>
+    <dialog>
+        <p>Enter the information</p>
+        <form>
+          <label for="title">Le titre de l'oeuvre</label>
+          <input type="text" name="title" id="title">
+          <label for="author">Le nom de l'auteur</label>
+          <input type="text" name="author" id="author">
+          <label for="pages">Nombre de pages</label>
+          <input type="number" name="pages" id="pages">
+          <label for="read">As-tu lu le livre ?</label>
+          <input type="checkbox" name="read" id="read">
+          <button type="button" id="close-dialog">OK</button>
+        </form>
+      </dialog>
+    <script src="index.js"></script>
+</body>
+</html>

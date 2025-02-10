@@ -4,7 +4,11 @@ const myLibrary = [];
 const showDialog = document.getElementById("show-dialog")
 const dialog = document.getElementsByTagName("dialog")[0];
 const closeDialog = document.getElementById("close-dialog");
-
+const bookTitle = document.getElementById("title");
+const bookAuthor = document.getElementById("author");
+const bookPages = document.getElementById("pages");
+const bookRead = document.getElementById("read");
+const listParagraph = document.getElementsByClassName("list-paragraph");
 //the book constructor
 function Book(title, author, numberOfPages, read) {
     this.title = title;
@@ -20,39 +24,45 @@ function addBookToLibrary(title, author, numberOfPages, read) {
 
     
     
-    return myLibrary.push({
+    myLibrary.push({
         title : title,
         author : author,
         numberOfPages : numberOfPages,
         read : read
     })
+
 }
 
-
-const slayerVolume1 = new Book("Slayers : Volume 1", "Hajime Kanzaka", 300, true);
-const slayerVolume2 = new Book("Slayers : Volume 2", "Hajime Kanzaka", 600, false);
-const slayerVolume3 = new Book("Slayers : Volume 3", "Hajime Kanzaka", 800, false);
-const slayerVolume5 = new Book("Slayers : Volume 5", "Hajime Kanzaka", 900, false);
-
-
-addBookToLibrary(slayerVolume1.title, slayerVolume1.author, slayerVolume1.numberOfPages, slayerVolume1.read);
-addBookToLibrary(slayerVolume2.title, slayerVolume2.author, slayerVolume2.numberOfPages, slayerVolume2.read);
+// const slayerVolume1 = new Book("Slayers : Volume 1", "Hajime Kanzaka", 300, true);
+// const slayerVolume2 = new Book("Slayers : Volume 2", "Hajime Kanzaka", 600, false);
+// const slayerVolume3 = new Book("Slayers : Volume 3", "Hajime Kanzaka", 800, false);
+// const slayerVolume5 = new Book("Slayers : Volume 5", "Hajime Kanzaka", 900, false);
 
 //function to display the books in the library
 function displayBooksInLibrary() {
 
     
-    for(let i = 0; i < myLibrary.length; i++) {
-        const bookInfo = document.createElement("p");
+    // for(let i = 0; i < myLibrary.length; i++) {
+    //     const bookInfo = document.createElement("p");
 
+    //     if (i >= 1 ) {
+    //         bookInfo.innerText = `${myLibrary[i].title} de ${myLibrary[i].author}, nombre de pages : ${myLibrary[i].numberOfPages}, ai-je lu ? : ${myLibrary[i].read}`;
+    //         listParagraph[0].appendChild(bookInfo);
+    //     } else {
+    //         bookInfo.innerText = `${myLibrary[i].title} de ${myLibrary[i].author}, nombre de pages : ${myLibrary[i].numberOfPages}, ai-je lu ? : ${myLibrary[i].read}`;
+    //         listParagraph[0].appendChild(bookInfo);
+    //     }
+
+    // }
+
+    const container = document.getElementById("library-container"); // Sélection du conteneur
+    const bookInfo = document.createElement("p");
+    for (let i = 0; i < myLibrary.length; i++) {  // `<` au lieu de `<=`
         bookInfo.innerText = `${myLibrary[i].title} de ${myLibrary[i].author}, nombre de pages : ${myLibrary[i].numberOfPages}, ai-je lu ? : ${myLibrary[i].read}`;
-        document.getElementsByTagName("p")[0].appendChild(bookInfo);
-
+        
+        container.appendChild(bookInfo); // Ajouter le livre au conteneur
     }
 }
-
-displayBooksInLibrary();
-
 
 console.log(myLibrary);
 showDialog.addEventListener("click", () => {
@@ -60,9 +70,13 @@ showDialog.addEventListener("click", () => {
 })
 
 closeDialog.addEventListener("click", () => {
-    dialog.close(addBookToLibrary(slayerVolume5.title, slayerVolume5.author, slayerVolume5.numberOfPages, slayerVolume5.read));
-    console.log(dialog.returnValue);
-    console.log(myLibrary)
+    const test = {
+        title : bookTitle.value
+    }
+    dialog.close(addBookToLibrary(test.title));
+    displayBooksInLibrary();
+    console.log(myLibrary);
+
 })
 // function addBookToLibrary() {
 

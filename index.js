@@ -46,11 +46,23 @@ function addBookToLibrary(title, author, numberOfPages, read) {
 function displayBooksInLibrary() {
 
     const container = document.getElementById("library-container"); // Sélection du conteneur
+
+    //litst item
     const bookInfo = document.createElement("p");
+
+    //button to erase book
+    const deleteButton = document.createElement("button");
     for (let i = 0; i < myLibrary.length; i++) {  // `<` au lieu de `<=`
-        // bookInfo.innerText = `${myLibrary[i].title} de ${myLibrary[i].author}, nombre de pages : ${myLibrary[i].numberOfPages}, ai-je lu ? : ${myLibrary[i].read}`;
-        bookInfo.innerHTML = `${myLibrary[i].title} de ${myLibrary[i].author}, nombre de pages : ${myLibrary[i].numberOfPages}, ai-je lu ? : ${myLibrary[i].read} <button type="button" class="suppress-book" data-display=${i} onclick="suppressBook()">Supprimer ce livre</button>`
-        
+        bookInfo.textContent = `${myLibrary[i].title} de ${myLibrary[i].author}, nombre de pages : ${myLibrary[i].numberOfPages}, ai-je lu ? : ${myLibrary[i].read}`;
+        deleteButton.textContent="Supprimer ce livre";
+        deleteButton.type = "button";
+        deleteButton.dataset.display = i;
+        deleteButton.addEventListener("click", () => {
+            delete myLibrary[deleteButton.dataset.display];
+            console.log(`%c🎨 ⍨ myLibrary`, "color:green; font-weight:bold", myLibrary);
+        })
+
+        bookInfo.appendChild(deleteButton);
         container.appendChild(bookInfo); // Ajouter le livre au conteneur
     }
 }
@@ -72,17 +84,3 @@ closeDialog.addEventListener("click", () => {
     console.log(myLibrary);
 
 })
-
-
-//supprimer le livre en fonction de son indice dans le tableau
-function suppressBook() {
-    const removeBook = document.getElementsByClassName("suppress-book");
-
-    // delete myLibrary[removeBook.dataset.display]
-    console.log(removeBook);
-    for(let i = 0; i < removeBook.length; i++) {
-        delete myLibrary[i];
-    }
-    console.log(`%c🎨 ⍨ myLibrary`, "color:blue; font-weight:bold", myLibrary);
-
-}

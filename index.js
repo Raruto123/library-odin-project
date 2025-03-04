@@ -52,18 +52,26 @@ function displayBooksInLibrary() {
 
     //button to erase book
     const deleteButton = document.createElement("button");
+    deleteButton.textContent="Supprimer ce livre";
+    deleteButton.type = "button";
     for (let i = 0; i < myLibrary.length; i++) {  // `<` au lieu de `<=`
         bookInfo.textContent = `${myLibrary[i].title} de ${myLibrary[i].author}, nombre de pages : ${myLibrary[i].numberOfPages}, ai-je lu ? : ${myLibrary[i].read}`;
-        deleteButton.textContent="Supprimer ce livre";
-        deleteButton.type = "button";
         deleteButton.dataset.display = i;
-        deleteButton.addEventListener("click", () => {
-            delete myLibrary[deleteButton.dataset.display];
-            console.log(`%c🎨 ⍨ myLibrary`, "color:green; font-weight:bold", myLibrary);
-        })
+
 
         bookInfo.appendChild(deleteButton);
         container.appendChild(bookInfo); // Ajouter le livre au conteneur
+
+        deleteButton.addEventListener("click", () => {
+            // delete myLibrary[deleteButton.dataset.display];
+            // myLibrary = myLibrary.filter((user) => user[deleteButton.dataset.display] )
+            if (container.children.item(deleteButton.dataset.display)) {
+                console.log(`%c🎨 ⍨ lel `, "Your_CSS_Goes_Here");
+                myLibrary.splice(deleteButton.dataset.display, deleteButton.dataset.display);
+                container.removeChild(bookInfo);
+                console.log(`%c🎨 ⍨ myLibrary`, "color:green; font-weight:bold", myLibrary);
+            }
+        })
     }
 }
 

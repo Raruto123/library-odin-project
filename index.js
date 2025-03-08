@@ -63,14 +63,13 @@ function displayBooksInLibrary() {
         container.appendChild(bookInfo); // Ajouter le livre au conteneur
 
         deleteButton.addEventListener("click", () => {
+            console.log(container.children.item(deleteButton.dataset.display));
             // delete myLibrary[deleteButton.dataset.display];
             // myLibrary = myLibrary.filter((user) => user[deleteButton.dataset.display] )
-            if (container.children.item(deleteButton.dataset.display)) {
                 console.log(`%c🎨 ⍨ lel `, "Your_CSS_Goes_Here");
-                myLibrary.splice(deleteButton.dataset.display, deleteButton.dataset.display);
+                myLibrary.splice(deleteButton.dataset.display, 1);
                 container.removeChild(bookInfo);
                 console.log(`%c🎨 ⍨ myLibrary`, "color:green; font-weight:bold", myLibrary);
-            }
         })
     }
 }
